@@ -1,96 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Juros Abusivos Design System - Paleta Estrita */
 
 @layer base {
   :root {
+    /* Cores principais - Paleta obrigatória */
+    --azul-profundo: 209 69% 16%; /* #0D2B45 */
+    --verde-seguranca: 144 67% 37%; /* #1F9D55 */
+    --verde-hover: 144 67% 29%; /* 8% mais escuro */
+    --cinza-grafite: 0 0% 18%; /* #2E2E2E */
+    --cinza-claro: 210 20% 97%; /* #F4F6F8 */
+    --amarelo-alerta: 43 86% 62%; /* #F2C94C */
+    
+    /* Mapeamento para tokens semânticos */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 18%; /* Grafite */
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 18%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 144 67% 37%; /* Verde Segurança - CTAs principais */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 20% 97%; /* Cinza Claro */
+    --secondary-foreground: 209 69% 16%; /* Azul Profundo */
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 20% 97%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 43 86% 62%; /* Amarelo Alerta */
+    --accent-foreground: 209 69% 16%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 0% 0%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 144 67% 37%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Tokens customizados */
+    --azul: 209 69% 16%;
+    --verde: 144 67% 37%;
+    --grafite: 0 0% 18%;
+    --cinza: 210 20% 97%;
+    --amarelo: 43 86% 62%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar (mantendo compatibilidade) */
+    --sidebar-background: 210 20% 97%;
+    --sidebar-foreground: 0 0% 18%;
+    --sidebar-primary: 144 67% 37%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 20% 93%;
+    --sidebar-accent-foreground: 209 69% 16%;
+    --sidebar-border: 210 20% 90%;
+    --sidebar-ring: 144 67% 37%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Não implementar modo escuro conforme instruções */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 18%;
   }
 }
 
@@ -99,7 +77,147 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', 'Inter', sans-serif;
+    @apply font-semibold text-azul-profundo;
+  }
+
+  p {
+    @apply text-grafite;
+  }
+}
+
+@layer components {
+  /* Container responsivo conforme especificação */
+  .container-site {
+    @apply w-full mx-auto;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  @screen md {
+    .container-site {
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+
+  @screen lg {
+    .container-site {
+      padding-left: 120px;
+      padding-right: 120px;
+    }
+  }
+
+  /* Seções */
+  .section {
+    @apply py-8 md:py-12;
+  }
+
+  .section-spacing {
+    @apply mt-9 md:mt-14;
+  }
+
+  /* Cards */
+  .card-trust {
+    @apply bg-white border border-border rounded-xl p-6 shadow-sm;
+  }
+
+  /* Selos de confiança */
+  .trust-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium;
+    @apply bg-verde-seguranca/10 text-verde-seguranca border border-verde-seguranca/20;
+  }
+
+  /* Badge de sucesso */
+  .success-badge {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold;
+    @apply bg-verde-seguranca text-white;
+  }
+
+  /* Cards de depoimentos */
+  .testimonial-card {
+    @apply bg-white border border-border rounded-xl p-6;
+    @apply shadow-[0_4px_20px_rgba(0,0,0,0.04)];
+  }
+
+  /* Cards de lista (para indícios) */
+  .list-card {
+    @apply border-l-4 border-azul-profundo/20 pl-4 py-3 bg-cinza-claro rounded-r-lg;
+  }
+
+  /* Form card */
+  .form-card {
+    @apply bg-white rounded-2xl p-6 md:p-8;
+    @apply shadow-[0_8px_30px_rgba(0,0,0,0.08)];
+  }
+
+  /* Hero section */
+  .hero-section {
+    @apply text-center py-12 md:py-16 px-4 md:px-8 bg-cinza-claro rounded-2xl;
+  }
+}
+
+@layer utilities {
+  /* Cores de texto */
+  .text-azul-profundo {
+    color: hsl(var(--azul-profundo));
+  }
+
+  .text-verde-seguranca {
+    color: hsl(var(--verde-seguranca));
+  }
+
+  .text-grafite {
+    color: hsl(var(--grafite));
+  }
+
+  .text-amarelo-alerta {
+    color: hsl(var(--amarelo-alerta));
+  }
+
+  /* Backgrounds */
+  .bg-azul-profundo {
+    background-color: hsl(var(--azul-profundo));
+  }
+
+  .bg-verde-seguranca {
+    background-color: hsl(var(--verde-seguranca));
+  }
+
+  .bg-cinza-claro {
+    background-color: hsl(var(--cinza-claro));
+  }
+
+  .bg-amarelo-alerta {
+    background-color: hsl(var(--amarelo-alerta));
+  }
+
+  /* Border colors */
+  .border-verde-seguranca {
+    border-color: hsl(var(--verde-seguranca));
+  }
+
+  .border-azul-profundo {
+    border-color: hsl(var(--azul-profundo));
+  }
+
+  /* Hover states */
+  .hover\:bg-verde-hover:hover {
+    background-color: hsl(var(--verde-hover));
+  }
+
+  /* Animações suaves */
+  .transition-smooth {
+    @apply transition-all duration-200 ease-out;
   }
 }
