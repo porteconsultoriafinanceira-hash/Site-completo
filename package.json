@@ -11,6 +11,11 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest"
+    "scripts": {
+  "build": "cd ../frontend && npm install && npm run build",
+  "start": "node server.js"
+}
+
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
