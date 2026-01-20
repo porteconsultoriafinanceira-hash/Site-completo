@@ -6,17 +6,33 @@ const CheckoutManual = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const initiateCheckout = async () => {
-      const email = sessionStorage.getItem("userEmail");
-      
-      if (!email) {
-        // Try to get from diagnostico form
-        const formData = sessionStorage.getItem("diagnosticoForm");
-        if (formData) {
-          const parsed = JSON.parse(formData);
-          sessionStorage.setItem("userEmail", parsed.email);
+useEffect(() => {
+  const initiateCheckout = async () => {
+    try {
+      const response = await fetch("/api/create-preference", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
         }
+      });
+
+      const data = await response.json();
+
+      // 👉 Redireciona para o Mercado Pago REAL
+      window.location.href =
+        "https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=" +
+        data.id;
+
+    } catch (err) {
+      console.error(err);
+      setError("Erro ao iniciar pagamento");
+      setIsLoading(false);
+    }
+  };
+
+  initiateCheckout();
+}, []);
+
       }
 
       const finalEmail = sessionStorage.getItem("userEmail");
