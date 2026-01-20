@@ -2,8 +2,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const axios = require('axios'); // se usar para chamadas Mercado Livre
-require('dotenv').config();     // permite usar .env localmente
+require('dotenv').config();
 
 const app = express();
 
@@ -18,13 +17,11 @@ app.get('/api/ping', (req, res) => {
 });
 
 // Exemplo de integração Mercado Livre
-// (modifique de acordo com sua lógica)
 app.get('/api/mercadolivre/token', async (req, res) => {
   const clientId = process.env.MERCADO_LIVRE_CLIENT_ID;
   const clientSecret = process.env.MERCADO_LIVRE_CLIENT_SECRET;
   const redirectUri = process.env.MERCADO_LIVRE_REDIRECT_URI;
 
-  // Aqui você faria sua lógica de OAuth com ML
   res.json({ clientId, clientSecret, redirectUri });
 });
 
@@ -32,8 +29,8 @@ app.get('/api/mercadolivre/token', async (req, res) => {
 const frontendPath = path.join(__dirname, '../frontend/build');
 app.use(express.static(frontendPath));
 
-// SPA fallback (React Router)
-app.get('*', (req, res) => {
+// SPA fallback: somente se não for rota /api
+app.get(/^\/(?!api).*/, (req, res) => {
   res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
