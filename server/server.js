@@ -1,65 +1,54 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import mercadopago from "mercadopago";
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
+if (!process.env.MP_ACCESS_TOKEN) {
+  console.error("❌ MP_ACCESS_TOKEN não definido");
+  process.exit(1);
+}
+
 mercadopago.configure({
-  access_token: process.env.MP_ACCESS_TOKEN
+  access_token: process.env.MP_ACCESS_TOKEN,
 });
 
-/* ======================
-   DIAGNÓSTICO – R$ 27
-====================== */
-app.post("/checkout/diagnostico", async (req, res) => {
+// Exemplo de endpoint
+app.post("/api/create-preference", async (req, res) => {
   try {
     const preference = {
       items: [
         {
           title: "Diagnóstico Financeiro",
           quantity: 1,
-          currency_id: "BRL",
-          unit_price: 27.00
-        }
+          unit_price: 27.0,
+        },
       ],
-      auto_return: "approved"
+      payment_methods: {
+        excluded_payment_types: [],
+        installments: 12,
+      },
+      back_urls: {
+        success: "https://seusite.com/sucesso",
+        failure: "https://seusite.com/erro",
+      },
+      auto_return: "approved",
     };
 
     const response = await mercadopago.preferences.create(preference);
-    res.json({ url: response.body.init_point });
-
-  } catch (error) {
-    res.status(500).json({ error: "Erro no checkout diagnóstico" });
+    res.json({ id: response.body.id });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erro ao criar pagamento" });
   }
 });
 
-/* ======================
-   MANUAL – R$ 167
-====================== */
-app.post("/checkout/manual", async (req, res) => {
-  try {
-    const preference = {
-      items: [
-        {
-          title: "Manual Financeiro",
-          quantity: 1,
-          currency_id: "BRL",
-          unit_price: 167.00
-        }
-      ],
-      auto_return: "approved"
-    };
-
-    const response = await mercadopago.preferences.create(preference);
-    res.json({ url: response.body.init_point });
-
-  } catch (error) {
-    res.status(500).json({ error: "Erro no checkout manual" });
-  }
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server rodando na porta ${PORT}`);
 });
 
-app.listen(3333, () => {
-  console.log("Servidor rodando na porta 3333");
-});
