@@ -13,18 +13,18 @@ app.use(cors());
 app.use(express.json());
 
 mercadopago.configure({
-  access_token: process.env.MP_ACCESS_TOKEN,
+  access_token: process.env.MP_ACCESS_TOKEN
 });
 
-// 👉 Endpoint que cria o pagamento
+// 🔥 ENDPOINT DO PAGAMENTO
 app.post("/api/create-preference", async (req, res) => {
   try {
     const preference = {
       items: [
         {
-          title: "Serviço Porte Consultoria",
+          title: "Diagnóstico Financeiro",
           quantity: 1,
-          unit_price: 100.0
+          unit_price: 100
         }
       ],
       back_urls: {
@@ -36,13 +36,14 @@ app.post("/api/create-preference", async (req, res) => {
 
     const response = await mercadopago.preferences.create(preference);
     res.json({ id: response.body.id });
+
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Erro ao criar pagamento" });
+    res.status(500).json({ error: "Erro ao criar preferência" });
   }
 });
 
-// 👉 Servir o site pronto
+// 👉 Servir o frontend buildado
 app.use(express.static(path.join(__dirname, "dist")));
 
 app.get("*", (req, res) => {
@@ -51,5 +52,5 @@ app.get("*", (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log("Servidor rodando na porta", PORT);
+  console.log("🚀 Server rodando na porta", PORT);
 });
